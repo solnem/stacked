@@ -12,14 +12,25 @@ class FavoritesView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<FavoritesViewModel>.reactive(
       builder: (context, viewModel, child) => Scaffold(
-          floatingActionButton: FloatingActionButton(
-            onPressed: () => viewModel.incrementCounter(),
-          ),
-          body: Center(
+        floatingActionButton: FloatingActionButton(
+          onPressed: () => viewModel.incrementCounter(),
+        ),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Center(
               child: Text(
-            viewModel.counter.toString(),
-            style: TextStyle(fontSize: 30),
-          ))),
+                viewModel.counter.toString(),
+                style: TextStyle(fontSize: 30),
+              ),
+            ),
+            ElevatedButton(
+              child: Text('To nested view'),
+              onPressed: viewModel.toNestedView,
+            )
+          ],
+        ),
+      ),
       viewModelBuilder: () => exampleLocator<FavoritesViewModel>(),
       onModelReady: (viewModel) => viewModel.setCounterTo999(),
       disposeViewModel: false,

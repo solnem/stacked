@@ -14,6 +14,8 @@ import 'package:stacked_themes/stacked_themes.dart';
 import '../services/epoch_service.dart';
 import '../services/factory_service.dart';
 import '../services/information_service.dart';
+import '../ui/bottom_nav/favorites/favorites_navigator.dart';
+import '../ui/bottom_nav/favorites/favorites_nested_viewmodel.dart';
 import '../ui/bottom_nav/favorites/favorites_viewmodel.dart';
 import '../ui/bottom_nav/history/history_viewmodel.dart';
 
@@ -36,5 +38,7 @@ void setupExampleLocator(
   exampleLocator.registerFactoryParam<FactoryService, String?, double?>(
       (param1, param2) => FactoryService(param1, data2: param2));
   exampleLocator.registerSingleton(HistoryViewModel());
+  exampleLocator.registerSingleton(FavoritesNavigator());
   exampleLocator.registerSingleton(FavoritesViewModel());
+  exampleLocator.registerSingleton(FavoritesNestedViewModel());
 }

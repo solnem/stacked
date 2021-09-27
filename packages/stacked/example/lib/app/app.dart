@@ -2,6 +2,10 @@ import 'package:new_architecture/services/epoch_service.dart';
 import 'package:new_architecture/services/factory_service.dart';
 import 'package:new_architecture/services/information_service.dart';
 import 'package:new_architecture/ui/bottom_nav/bottom_nav_example.dart';
+import 'package:new_architecture/ui/bottom_nav/favorites/favorites_navigator.dart';
+import 'package:new_architecture/ui/bottom_nav/favorites/favorites_nested_view.dart';
+import 'package:new_architecture/ui/bottom_nav/favorites/favorites_nested_viewmodel.dart';
+import 'package:new_architecture/ui/bottom_nav/favorites/favorites_view.dart';
 import 'package:new_architecture/ui/bottom_nav/favorites/favorites_viewmodel.dart';
 import 'package:new_architecture/ui/bottom_nav/history/history_viewmodel.dart';
 import 'package:new_architecture/ui/details/details_view.dart';
@@ -17,8 +21,14 @@ import 'package:stacked_themes/stacked_themes.dart';
 
 @StackedApp(
   routes: [
-    MaterialRoute(page: HomeView, initial: true),
-    MaterialRoute(page: BottomNavExample),
+    MaterialRoute(page: HomeView),
+    MaterialRoute(page: BottomNavExample, initial: true),
+    MaterialRoute(page: FavoritesView),
+    MaterialRoute(page: FavoritesNavigator, children: [
+      MaterialRoute(page: FavoritesView, initial: true),
+      MaterialRoute(page: FavoritesNestedView),
+    ]),
+
     MaterialRoute(page: StreamCounterView),
     CupertinoRoute(page: DetailsView),
     // TODO: Change the name of the FormView to avoid type clashing
@@ -47,7 +57,9 @@ import 'package:stacked_themes/stacked_themes.dart';
     FactoryWithParam(classType: FactoryService),
     // singletons
     Singleton(classType: HistoryViewModel),
+    Singleton(classType: FavoritesNavigator),
     Singleton(classType: FavoritesViewModel),
+    Singleton(classType: FavoritesNestedViewModel),
   ],
   logger: StackedLogger(),
   locatorName: 'exampleLocator',

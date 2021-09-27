@@ -3,6 +3,7 @@ import 'package:new_architecture/ui/bottom_nav/profile/profile_view.dart';
 import 'package:stacked/stacked.dart';
 
 import 'bottom_nav_example_viewmodel.dart';
+import 'favorites/favorites_navigator.dart';
 import 'favorites/favorites_view.dart';
 import 'history/history_view.dart';
 
@@ -50,7 +51,7 @@ class _BottomNavExampleState extends State<BottomNavExample> {
     if (!_viewCache.containsKey(index)) {
       switch (index) {
         case 0:
-          _viewCache[index] = FavoritesView();
+          _viewCache[index] = FavoritesNavigator();
           break;
         case 1:
           _viewCache[index] = HistoryView();
